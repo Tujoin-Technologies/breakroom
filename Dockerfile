@@ -21,4 +21,4 @@ COPY --from=multistage /home/node/app /home/node/
 
 EXPOSE 1337
 
-CMD [ "node", "app.js" ]
+CMD [ "npm", "start" ]
