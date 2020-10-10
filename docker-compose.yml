@@ -1,0 +1,75 @@
+version: "3"
+# Services needed to run this module.
+services:
+  redis:
+    container_name: redis-sever
+    image: redis
+    ports: 
+      - '6379:6379'
+    restart: always
+  
+  postgres:
+    container_name: postgres-db
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: breakroom-maim-db
+    ports: 
+      - '5432:5432'
+    volumes:
+      - ./postgres/data/postgres:/var/lib/postgresql/data
+    restart: always
+
+  breakroom-main:
+    container_name: breakroom-main
+    image: martinmutua/breakroom
+    restart: always
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/breakroom-main-db
+    depends_on:
+      - postgres
+    ports:
+      - '1337:1337'
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      #- web-root:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - breakroom-main
+    #networks:
+     # - app-network
+    
+    certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      #- web-root:/var/www/html
+    depends_on:
+      - webserver
+    #command: certonly --webroot --webroot-path=/var/www/html --email sammy@example.com --agree-tos --no-eff-email --staging -d example.com  -d www.example.com
+  
+  volumes:
+    certbot-etc:
+    certbot-var:
+    #web-root:
+    #  driver: local
+    #  driver_opts:
+    #    type: none
+    #    device: /home/sammy/node_project/views/
+    #    o: bind
+  
+  #networks:
+  #  app-network:
+  #    driver: bridge

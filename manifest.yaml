@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: breakroom
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: breakroom
+  template:
+    metadata:
+      labels:
+        app: breakroom
+    spec:
+      containers:
+      - name: breakroom-main
+        image: martinmutua/breakroom:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: breakroom-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: breakroom
+  ports:
+  - port: 1337
+    targetPort: 1337
+    nodePort: 30001
+

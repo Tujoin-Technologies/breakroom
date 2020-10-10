@@ -33,10 +33,10 @@ module.exports.custom = {
   * > app when it's first generated.                                        *
   *                                                                         *
   **************************************************************************/
-  platformCopyrightYear: '2019',
-  platformName:  'NEW_APP_NAME',
-  platformCompanyName: 'NEW_APP_COMPANY_NAME',
-  platformCompanyAboutHref: 'https://sailsjs.com/about',
+  platformCopyrightYear: '2020',
+  platformName:  'Breakroom',
+  platformCompanyName: 'Tujoin Technologies LLC',
+  platformCompanyAboutHref: 'https://tujointech/about',
   privacyPolicyUpdatedAt: 'DATE_PRIVACY_POLICY_LAST_UPDATED',
   termsOfServiceUpdatedAt: 'DATE_TERMS_OF_SERVICE_LAST_UPDATED',
 
@@ -67,7 +67,7 @@ module.exports.custom = {
   * (https://app.sendgrid.com/settings/api_keys)                            *
   *                                                                         *
   **************************************************************************/
-  // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
+  sendgridSecret: process.env.SENDGRID_APIKEY,
   //--------------------------------------------------------------------------
   // /\  Configure this to enable support for automated emails.
   // ||  (Important for password recovery, verification, contact form, etc.)
@@ -75,7 +75,7 @@ module.exports.custom = {
 
   // The sender that all outgoing emails will appear to come from.
   fromEmailAddress: 'noreply@example.com',
-  fromName: 'The NEW_APP_NAME Team',
+  fromName: 'The Breakroom Team',
 
   // Email address for receiving support messages & other correspondences.
   // > If you're using the default privacy policy, this will be referenced

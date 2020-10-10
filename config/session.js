@@ -18,7 +18,7 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: 'c0e13598f154fe0f069048f1082817f6',
+  secret: process.env.SECRETS,
 
 
   /***************************************************************************

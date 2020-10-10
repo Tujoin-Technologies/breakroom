@@ -47,8 +47,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
+      adapter: 'sails-postgresql',
+      url: process.env.PROD_DB_URL,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -101,7 +101,7 @@ module.exports = {
     * choose to keep this enabled.)                                            *
     *                                                                          *
     ***************************************************************************/
-    // cascadeOnDestroy: false,
+    cascadeOnDestroy: false,
 
   },
 
@@ -148,9 +148,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+      allowOrigins: [
+        process.env.BASE_URL,
+      ]
     },
 
   },
@@ -250,10 +250,10 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   'https://example.com',
+    onlyAllowOrigins: [
+      process.env.BASE_URL,
     //   'https://staging.example.com',
-    // ],
+    ],
 
 
     /***************************************************************************
@@ -268,8 +268,8 @@ module.exports = {
     * (https://sailsjs.com/docs/concepts/deployment/scaling)                   *
     *                                                                          *
     ***************************************************************************/
-    // adapter: '@sailshq/socket.io-redis',
-    // url: 'redis://user:password@bigsquid.redistogo.com:9562/databasenumber',
+    adapter: '@sailshq/socket.io-redis',
+    url: process.env.REDIS_SERVER,
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking it in to version control, you might opt to
     // ||   set sensitive credentials like this using an environment variable.
@@ -374,7 +374,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
+    baseUrl: process.env.BASE_URL,
     internalEmailAddress: 'support@example.com',
 
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
