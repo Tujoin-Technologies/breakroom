@@ -184,8 +184,8 @@ module.exports = {
     * > (For a full list, see https://sailsjs.com/plugins/sessions)            *
     *                                                                          *
     ***************************************************************************/
-    // adapter: '@sailshq/connect-redis',
-    // url: 'redis://user:password@localhost:6379/databasenumber',
+    adapter: '@sailshq/connect-redis',
+    url: process.env.REDIS_SERVER_SESSIONS,
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking it in to version control, you might opt to
     // ||   set sensitive credentials like this using an environment variable.
@@ -269,7 +269,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     adapter: '@sailshq/socket.io-redis',
-    url: process.env.REDIS_SERVER,
+    url: process.env.REDIS_SERVER_SOCKETS,
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking it in to version control, you might opt to
     // ||   set sensitive credentials like this using an environment variable.
@@ -375,9 +375,9 @@ module.exports = {
   ***************************************************************************/
   custom: {
     baseUrl: process.env.BASE_URL,
-    internalEmailAddress: 'support@example.com',
+    internalEmailAddress: 'support@elimu.school',
 
-    // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
+    sendgridSecret: process.env.SENDGRID_APIKEY,
     // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking them in to version control, you might opt to

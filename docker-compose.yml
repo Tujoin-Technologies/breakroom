@@ -7,6 +7,8 @@ services:
     ports: 
       - '6379:6379'
     restart: always
+    volumes:
+      - ./redis:/var/lib/redis/data
   
   postgres:
     container_name: postgres-db
@@ -24,10 +26,12 @@ services:
   breakroom-main:
     container_name: breakroom-main
     image: martinmutua/breakroom
+    #build:
+      #context: . 
     restart: always
     environment:
-      NODE_ENV: development
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/breakroom-main-db
+      NODE_ENV: production 
+      #DATABASE_URL: postgres://postgres:postgres@postgres:5432/breakroom-main-db
     depends_on:
       - postgres
     ports:
